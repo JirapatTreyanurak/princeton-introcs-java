@@ -1,5 +1,9 @@
 package ch1_ElementsOfProgramming.ch1_2_BuiltinDataTypes;
 
+/**
+ * Prints the root(s) of a given quadratic expression.
+ * The program takes 3 arguments as the coefficients.
+ */
 public class Quadratic {
 
     public static void main (String[] args) {

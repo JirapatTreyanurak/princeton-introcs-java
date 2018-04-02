@@ -1,39 +1,36 @@
 package ch1_ElementsOfProgramming.ch1_2_BuiltinDataTypes;
 
+/**
+ * Prints the dragon curve of the given order.
+ */
 public class Dragon {
 
     /**
-     *
+     * Returns a string representing the dragon curve of order n.
      *
      * @param n
-     * @return
+     * @return String representation of the dragon curve of order n.
      */
     public static String dragonCurve (int n) {
         if (n < 0) {
             throw new IllegalArgumentException("Error: n must be non-negative!");
         }
-        StringBuilder previous = new StringBuilder("F");
-        StringBuilder current = new StringBuilder();
-        if (n == 0) {
-            current = previous;
-        } else {
-            for (int i = 0; i < n; i++) {
-                StringBuilder temp = new StringBuilder(previous.toString());
-                StringBuilder nextHalf = new StringBuilder(temp.reverse().toString());
-                for (int c = 0; c < nextHalf.length(); c++) {
-                    if (nextHalf.charAt(c) == 'R') {
-                        nextHalf.replace(c, c+1, "L");
-                    }
-                    if (nextHalf.charAt(c) == 'L') {
-                        nextHalf.replace(c, c+1, "R");
-                    }
+        StringBuilder sb = new StringBuilder();
+        sb.append("F");
+        for (int order = 1; order <= n; order++) {
+            StringBuilder prev = new StringBuilder(sb.toString());
+            sb.append("L");
+            for (int i = prev.length() - 1; i >= 0; i--) {
+                char c = prev.charAt(i);
+                if (c == 'L') {
+                    c = 'R';
+                } else if (c == 'R') {
+                    c = 'L';
                 }
-                current = new StringBuilder(previous.toString());
-                current.append("L").append(nextHalf);
-                previous = new StringBuilder(current.toString());
+                sb.append(c);
             }
         }
-        return current.toString();
+        return sb.toString();
     }
 
     public static void main (String[] args) {

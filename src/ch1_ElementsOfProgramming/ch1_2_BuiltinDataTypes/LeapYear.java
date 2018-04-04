@@ -19,6 +19,9 @@ public class LeapYear {
             }
             year = Integer.parseInt(args[0]);
         }
+        if (year < 0) {
+            throw new IllegalArgumentException("Error: Year must be non-negative!");
+        }
         isLeapYear = ((year%4 == 0) && (year%100 != 0)) || (year%400 == 0);
         System.out.print(year);
         if (isLeapYear) {
@@ -27,5 +30,16 @@ public class LeapYear {
             System.out.println(" is not a leap year.");
         }
     }
+    /*
+        Web exercise 13:
+        (assume test = false;)
+            a. java LeapYear --> System.err
+            b. java LeapYear 1975.5 --> NumberFormatException on Integer.parseInt()
+            c. java LeapYear -1975 --> IllegalArgumentException
+            d. java LeapYear 1975 1976 1977 --> java LeapYear 1975
+        Next exercise:
+            Make it so that in the case of d (n arguments), the program will
+            print whether or not each of the arguments is a leap year.
+     */
 
 }

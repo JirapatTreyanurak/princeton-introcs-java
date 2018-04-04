@@ -2,7 +2,7 @@ package ch1_ElementsOfProgramming.ch1_2_BuiltinDataTypes;
 
 /**
  * Samples n random numbers in the interval [0,1], then prints their
- * average, min, and max values.
+ * average, min, max, and standard deviation.
  */
 public class StatsN {
 
@@ -26,9 +26,15 @@ public class StatsN {
             }
         }
         double average = sum / n;
+        double sumOfSquaredDiff = 0;
+        for (int i = 0; i < n; i++) {
+            sumOfSquaredDiff += Math.pow(sample[i] - average,2);
+        }
+        double sd = Math.sqrt(sumOfSquaredDiff / n);
         System.out.println("Average:\t" + average);
         System.out.println("Min:\t\t" + min);
         System.out.println("Max:\t\t" + max);
+        System.out.println("SD:\t\t\t" + sd);
     }
 
 }
